@@ -17,6 +17,7 @@ To run the project's webserver you will need to install npm and node.js. You can
 To serve the project run 
 
 `npm install`
+
 `npm run server`
 
 This will launch a webserver on default port 80.
