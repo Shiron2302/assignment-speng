@@ -56,7 +56,8 @@
             {
                 bidder: "ix",
                 params: {
-                    id: 5,
+                    size: [300, 250],
+                    //ix need size and siteid
                     siteId: "171882"
                 }
             },
@@ -90,7 +91,8 @@
                 params: {
                     siteId: "13762",
                     zoneId: "767258",
-                    sizeId: 15
+                    accountId: '4934'
+                    //need siteid, zoneid and accountid. Was originally sizeid, changed this to accountid & put default value as placeholder
                 }
             }
         ]
@@ -116,7 +118,7 @@
         const iframe = document.getElementById(adId);
         const iframeDoc = iframe.contentWindow.document;
         const adServerTargeting = pbjs.getAdserverTargetingForAdUnitCode(adId);
-
+        
         if (adServerTargeting && adServerTargeting['hb_adid']) {
             pbjs.renderAd(iframeDoc, adServerTargeting['hb_adid']);
 
@@ -134,11 +136,15 @@
         setTimeout(function () {
 
             fetchBid(function (bidResponse) {
+                const iframe = document.getElementById(adId);
+                const iframeDoc = iframe.contentWindow.document;
+                const adServerTargeting = pbjs.getAdserverTargetingForAdUnitCode(adId);
+                pbjs.renderAd(iframeDoc, adServerTargeting['hb_adid']);
 
-                const ad = bidResponse[adId].bids[0].ad;
-
-                document.write(ad);
-
+                // The previous method of document.write once document has been loaded as it will open a new doc and replace all contents
+                // Once identified the problem, I knew I wanted to dynamically change the iFrame contents without refreshing the page, and the easiest method was to use the intial rendering method
+                // As the intial render method identifies the the the correct iframe and dynamically re-write over the contents of the iframe
+                
             });
 
         }, timeout);
