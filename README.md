@@ -2,7 +2,7 @@
 
 ### The exercise 
 
-Please have a look at the test.html file. This file contains some basic prebid/posbid implementation with some issues. 
+Please have a look at the test.html file. This file contains some basic prebid/postbid implementation with some issues. 
 
 Your job is to find and fix any issues you can see as well as implementing/fixing the refreshAd function to load a new ad every given time.
 
